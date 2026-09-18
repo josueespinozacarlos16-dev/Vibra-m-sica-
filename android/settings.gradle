@@ -1,0 +1,8 @@
+pluginManagement { repositories { google() } }
+include ':app'
+def localProps = new Properties()
+def file = rootProject.file("local.properties")
+if (file.exists()) file.withInputStream { localProps.load(it) }
+def sdk = localProps.getProperty('flutter.sdk')
+if (!sdk) throw new Exception("Falta flutter.sdk")
+apply from: "$sdk/packages/flutter_tools/gradle/app_plugin_loader.gradle"
