@@ -1,0 +1,23 @@
+def localProps = new Properties()
+def file = rootProject.file("local.properties")
+if (file.exists()) file.withInputStream { localProps.load(it) }
+def sdk = localProps.getProperty('flutter.sdk')
+if (!sdk) throw new Exception("Falta flutter.sdk")
+
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+
+android {
+    namespace "com.example.vibra"
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.example.vibra"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+    buildTypes { release { minifyEnabled false } }
+}
+dependencies { implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0" }
+apply from: "$sdk/packages/flutter_tools/gradle/flutter.gradle"
