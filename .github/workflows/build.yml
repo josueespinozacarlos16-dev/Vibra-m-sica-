@@ -7,22 +7,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - uses: subosito/flutter-action@v2
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.0'
 
-      - run: flutter pub get
-      - run: flutter build apk --release
+      - name: Limpiar
+        run: flutter clean
 
-      - uses: actions/upload-artifact@v4
+      - name: Instalar dependencias
+        run: flutter pub get
+
+      - name: Construir APK
+        run: flutter build apk --release --no-android-embedding-v1
+
+      - name: Subir APK
+        uses: actions/upload-artifact@v4
         with:
-          name: Vibra-App
+          name: Vibra-APK
           path: build/app/outputs/flutter-apk/app-release.apk
