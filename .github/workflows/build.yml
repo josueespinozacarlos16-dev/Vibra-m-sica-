@@ -1,4 +1,3 @@
-
 name: Build Vibra
 
 on:
@@ -22,13 +21,10 @@ jobs:
         with:
           flutter-version: '3.24.0'
 
-      - name: Limpiar todo
+      - name: Limpiar
         run: flutter clean
 
-      - name: Reinicializar configuración
-        run: flutter config --no-enable-android-embedding-v1
-
-      - name: Instalar dependencias
+      - name: Dependencias
         run: flutter pub get
 
       - name: Construir APK
