@@ -1,0 +1,9 @@
+# This file tracks properties of this Flutter project.
+# Used by Flutter tool to assess changes made in Android host.
+#
+# Mon Sep 19 00:00:00 2026
+version:
+  revision: stable
+  channel: stable
+project_type: app
+android_embedding: 2
