@@ -16,16 +16,16 @@ jobs:
         with:
           flutter-version: '3.24.0'
 
-      - name: Limpiar
+      - name: Limpiar todo
         run: flutter clean
 
       - name: Instalar dependencias
         run: flutter pub get
 
       - name: Construir APK
-        run: flutter build apk --release --no-android-embedding-v1
+        run: flutter build apk --release
 
-      - name: Subir APK
+      - name: Subir APK listo
         uses: actions/upload-artifact@v4
         with:
           name: Vibra-APK
