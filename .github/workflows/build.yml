@@ -1,3 +1,4 @@
+
 name: Build Vibra
 
 on:
@@ -11,15 +12,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Borrar caché vieja
+        run: |
+          rm -rf build
+          rm -rf .dart_tool
+
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.0'
 
-      - name: Limpiar
+      - name: Limpiar todo
         run: flutter clean
 
-      - name: Dependencias
+      - name: Reinicializar configuración
+        run: flutter config --no-enable-android-embedding-v1
+
+      - name: Instalar dependencias
         run: flutter pub get
 
       - name: Construir APK
